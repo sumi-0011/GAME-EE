@@ -12,6 +12,16 @@
  
 
 
+
+
+## 프로젝트를 하면서 목표했던 것
+
+![프론트엔드 소개 (#4)](https://user-images.githubusercontent.com/49177223/183588563-7e4c7a85-0acd-4ce7-a73e-3054609083e7.png)
+![Backend 협업 방식 및 목표(#5)](https://user-images.githubusercontent.com/49177223/183588568-0dc2e102-0fc0-407f-8d53-589daa76c6a8.png)
+![Team 협업 방식 및 목표](https://user-images.githubusercontent.com/49177223/183588574-6987c269-9124-4a7f-b636-63bfbe640d41.png)
+
+
+
 ## 📁 폴더 구조
 
 ```
@@ -31,11 +41,3 @@
  ┗ 📂utils // 유틸 함수
 ```
 
-
-
-
-## 프로젝트를 하면서 목표했던 것
-
-![프론트엔드 소개 (#4)](https://user-images.githubusercontent.com/49177223/183588563-7e4c7a85-0acd-4ce7-a73e-3054609083e7.png)
-![Backend 협업 방식 및 목표(#5)](https://user-images.githubusercontent.com/49177223/183588568-0dc2e102-0fc0-407f-8d53-589daa76c6a8.png)
-![Team 협업 방식 및 목표](https://user-images.githubusercontent.com/49177223/183588574-6987c269-9124-4a7f-b636-63bfbe640d41.png)
