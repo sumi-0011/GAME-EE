@@ -2,13 +2,13 @@ import React from 'react';
 import { Tab, TabList, TabPanels, Tabs } from '@chakra-ui/react';
 
 import { ELEMENT_COLOR } from '../../styles/colors';
-interface ITabWrapper {
-  data: Array<any>;
+import { GAME_INFO } from '../../constants/rank';
+interface ITabWrapper { 
   children: React.ReactNode;
   handleTabsChange: (index: number) => void;
   tabIndex: number;
 }
-function TabsWrapper({ data, children, tabIndex, handleTabsChange }: ITabWrapper) {
+function TabsWrapper({ children, tabIndex, handleTabsChange }: ITabWrapper) {
   return (
     <Tabs
       backgroundColor={ELEMENT_COLOR.HOME_MAIN_BG_COLOR}
@@ -17,6 +17,7 @@ function TabsWrapper({ data, children, tabIndex, handleTabsChange }: ITabWrapper
       outline={'none'}
       variant="enclosed"
       h={'100vh'}
+      overflowY="scroll"
       index={tabIndex}
       onChange={handleTabsChange}
     >
@@ -25,7 +26,7 @@ function TabsWrapper({ data, children, tabIndex, handleTabsChange }: ITabWrapper
         justifyContent={'center'}
         gap={24}
       >
-        {data.map(({ name }) => (
+        {Object.values(GAME_INFO).map(({ name }) => (
           <TabWrapper key={name} name={name + ''} />
         ))}
       </TabList>

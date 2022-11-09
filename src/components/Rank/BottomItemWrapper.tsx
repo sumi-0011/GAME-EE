@@ -1,51 +1,63 @@
-import { Avatar, Box, chakra } from '@chakra-ui/react';
+import { Avatar, Box, chakra, Td } from '@chakra-ui/react';
 import { ELEMENT_COLOR } from '../../styles/colors';
 import { motion, isValidMotionProp } from 'framer-motion';
-import React, { useCallback } from 'react';
-import { ItemMotion, BottonItemWrapperMotion } from '../../constants/rank';
+import React, { useState } from 'react';
+import { ItemMotion, ItemWrapperMotion } from '../../constants/rank';
+import { IRankData } from '../../types/rank';
+import SafeHydrate from '../SafeHydrate';
 
 interface IBottomItemWraer {
-  data: Array<{
-    name: string;
-    score: string;
-  }>;
+  data: IRankData[];
   idx: number;
 }
 
 function BottomItemWrapper({ data }: IBottomItemWraer) {
-  const MotionDiv = useCallback(
-    chakra(motion.div, {
-      shouldForwardProp: prop => isValidMotionProp(prop) || prop === 'children',
-    }),
-    [data],
-  );
-
+  const MotionDiv = chakra(motion.div, {
+    shouldForwardProp: prop => isValidMotionProp(prop) || prop === 'children',
+  });
+  const MotionTr = chakra(motion.tr, {
+    shouldForwardProp: prop => isValidMotionProp(prop) || prop === 'children',
+  });
   return (
-    <MotionDiv
-      display="flex"
-      flexDirection={'column'}
-      marginY={8}
-      paddingY={5}
-      gap={5}
-      variants={BottonItemWrapperMotion}
-      initial="hidden"
-      animate="visible"
-    >
-      {data.map((item, idx) => (
-        <MotionDiv h="50px" lineHeight={'50px'} key={idx} variants={ItemMotion} color={'#fff'}>
-          <Box gap={8} display={'flex'}>
-            <Avatar
-              name={item.name}
-              color={'#fff'}
-              bg={ELEMENT_COLOR.HOME_SECOND_BG_COLOR}
-            ></Avatar>
-            <span>{item.name}</span>
-            <span>{item.score}</span>
-          </Box>
-        </MotionDiv>
-      ))}
-    </MotionDiv>
+    <SafeHydrate>
+      <MotionDiv
+        display="flex"
+        flexDirection={'column'}
+        marginY={8}
+        paddingY={5}
+        gap={5}
+        variants={{
+          ...ItemWrapperMotion,
+          visible: {
+            ...ItemWrapperMotion.visible,
+            transition: { delayChildren: 1, staggerChildren: 0.2 },
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+      >
+        <table>
+          {data.map((item: IRankData, idx) => (
+            <MotionTr h="60px" lineHeight={'50px'} key={idx} variants={ItemMotion} color={'#fff'}>
+              <Td w="20px" textAlign="center">
+                {item.rank}
+              </Td>
+              <Td w="100px" textAlign="center">
+                <Avatar
+                  name={item.name}
+                  color={'#fff'}
+                  bg={ELEMENT_COLOR.HOME_SECOND_BG_COLOR}
+                ></Avatar>
+              </Td>
+
+              <Td w="150px">{item.name}</Td>
+              <Td isNumeric>{item.score}</Td>
+            </MotionTr>
+          ))}
+        </table>
+      </MotionDiv>
+    </SafeHydrate>
   );
 }
 
-export default React.memo(BottomItemWrapper);
+export default BottomItemWrapper;
